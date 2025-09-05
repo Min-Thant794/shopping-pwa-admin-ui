@@ -7,20 +7,21 @@ import { Navigate } from 'react-router-dom'
 
 const App = () => {
 
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState(getItemFromLocalStorage(STORAGE_KEY.USER_DATA))
 
-  useEffect(() => {
-    const storedUserData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA)
-    setUserData(storedUserData)
-  }, [])
+  // useEffect(() => {
+  //   const storedUserData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA)
+  //   console.log("stored user data", storedUserData)
+  //   setUserData(storedUserData)
+  // }, [])
 
   const router = useMemo(() => {
-    const allowedUserRoutes = userData?.data.allowedPath || ["/login"]
-    console.log("Route:", allowedUserRoutes);
+    const allowedUserRoutes = userData?.allowedPath || ["/login"]
+    //console.log("Route:", allowedUserRoutes);
     const filteredRoutes = routes.map((route) => {
       if (route.children) {
         const allowedChildren = route.children.filter((child) => allowedUserRoutes?.includes(child.path))
-         console.log(allowedChildren)
+         console.log("Allowed Children Routes",allowedChildren)
         if(allowedChildren?.length === 0) return null
        
         return {
@@ -33,7 +34,7 @@ const App = () => {
 
     filteredRoutes.push({
       path: "*",
-      element: userData ? <Navigate to={filteredRoutes[1]?.children[0]?.path}/> : <Navigate to={routes.path}/>
+      element: userData ? <Navigate to={filteredRoutes[1]?.children[0]?.path}/> : <Navigate to="/login"/>
     })
 
     console.log("allowed routes: ", filteredRoutes)

@@ -31,9 +31,10 @@ const Login = () => {
       })
 
       if (response.data.success) {
-        const allowedPath = response.data.data.allowedPath;
+        const allowedPath = response?.data?.data?.allowedPath;
+        console.log("allowed path", response.data.data)
 
-        setItemToLocalStorage("user-data", response.data);
+        setItemToLocalStorage("user-data", response.data.data);
         setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token)
         toast.success(response.data.message);
         const role = response.data.data.role;

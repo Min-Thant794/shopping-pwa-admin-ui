@@ -7,6 +7,10 @@ import Unit from '../pages/Unit';
 import Category from '../pages/Category';
 import MainLayout from '../layouts/MainLayout';
 import { Navigate } from 'react-router-dom';
+import { FaHome, FaUserEdit } from "react-icons/fa";
+import { BiSolidCategory, BiSolidPurchaseTag } from "react-icons/bi";
+import { BiDetail } from "react-icons/bi";
+import { SiHomeassistantcommunitystore } from "react-icons/si";
 
 export const routes = [
     {
@@ -26,32 +30,38 @@ export const routes = [
             {
                 name: "Dashboard",
                 path: "/dashboard",
-                element: <Dashboard/>
+                element: <Dashboard/>,
+                icon: <FaHome />
             },
             {
                 name: "User Create",
                 path: "/user-create",
-                element: <UserCreate/>
+                element: <UserCreate/>,
+                icon: <FaUserEdit/>
             },
             {
                 name: "Order",
                 path: "/order",
-                element: <Order/>
+                element: <Order/>,
+                icon: <BiSolidPurchaseTag />
             },
             {
                 name: "Product",
                 path: "/product",
-                element: <Product/>
+                element: <Product/>,
+                icon: <SiHomeassistantcommunitystore />
             },
             {
                 name: "Unit",
                 path: "/unit",
-                element: <Unit/>
+                element: <Unit/>,
+                icon: <BiDetail />
             },
             {
                 name: "Category",
                 path: "/category",
-                element: <Category/>
+                element: <Category/>,
+                icon: <BiSolidCategory />
             }
         ]
     }
