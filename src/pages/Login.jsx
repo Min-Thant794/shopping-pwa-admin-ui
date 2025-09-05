@@ -12,6 +12,7 @@ const Login = () => {
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -31,20 +32,21 @@ const Login = () => {
       })
 
       if (response.data.success) {
-        const allowedPath = response?.data?.data?.allowedPath;
-        console.log("allowed path", response.data.data)
-
         setItemToLocalStorage("user-data", response.data.data);
         setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token)
-        toast.success(response.data.message);
-        const role = response.data.data.role;
-        console.log("User role", role);
+        // const role = response.data.data.role;
+        // console.log("User role", role);
+        // const allowedPath = response?.data?.data?.allowedPath;
+        // console.log("allowed path", response.data.data)
 
-        navigate("/dashboard")
-        // setTimeout(() => {
-        //     //setIsLoading(false)
-        //     //navigate({roleBasedRoutes})
-        // }, 3000);
+        setIsLoading(!isLoading)
+        toast.success("Successfully Login!");
+        
+        setTimeout(() => {
+            setIsLoading(false)
+            navigate("/dashboard")
+            window.location.reload()
+        }, 500);
       } else {
         BiSolidCommentError("Invalid credentials, please try again.")
       }
@@ -100,7 +102,12 @@ const Login = () => {
             </div>
           </div>
           <RippleButton className='bg-third btnHover p-2 rounded-sm text-txtColor font-bold tracking-wide cursor-pointer'>
-            Login
+            {
+              isLoading?
+              "Loading..."
+              :
+              "Login"
+            }
           </RippleButton>
         </form>
       </div>
