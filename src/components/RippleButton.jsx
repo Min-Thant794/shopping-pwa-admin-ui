@@ -39,7 +39,7 @@ const RippleButton = ({ className, children, ...props }) => {
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.4);
             transform: scale(0);
-            animation: ripple-effect 600ms linear forwards;
+            animation: ripple-effect 700ms linear forwards;
             pointer-events: none;
           }
           @keyframes ripple-effect {
