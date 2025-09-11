@@ -6,7 +6,8 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { setItemToLocalStorage } from '../helpers/helper';
 import RippleButton from '../components/RippleButton';
-import { STORAGE_KEY } from '../config/config';
+import { API_ROUTES, STORAGE_KEY } from '../config/config';
+import axiosInstance from '../config/axiosInstance';
 
 const Login = () => {
 
@@ -28,7 +29,7 @@ const Login = () => {
         return alert("Please Enter Password!")
       }
 
-      const response = await axios.post('http://localhost:8080/api/v1/user/login', 
+      const response = await axiosInstance.post(API_ROUTES.USER_LOGIN, 
         {
         name: userName,
         password: password
@@ -57,7 +58,7 @@ const Login = () => {
     } catch (error) {
       console.log("An Error Occurred!", error)
       const errorResponse = error;
-      toast.error(errorResponse.response.data.message || "Login Failed!");
+      toast.error(errorResponse.response.data || "Login Failed!");
     }
   }
 
