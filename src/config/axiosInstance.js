@@ -3,8 +3,8 @@ import { API_ROUTES, STORAGE_KEY } from "./config";
 import { getItemFromLocalStorage } from "../helpers/helper";
 
 const axiosInstance = axios.create({
-    baseURL: API_ROUTES.DEPLOY_BASE_URL,
-    timeout: 3000,
+    baseURL: API_ROUTES.LOCAL_BASE_URL,
+    timeout: 30000,
 });
 
 axiosInstance.interceptors.request.use(

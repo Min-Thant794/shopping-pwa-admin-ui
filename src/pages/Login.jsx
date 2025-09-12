@@ -8,6 +8,7 @@ import { setItemToLocalStorage } from '../helpers/helper';
 import RippleButton from '../components/RippleButton';
 import { API_ROUTES, STORAGE_KEY } from '../config/config';
 import axiosInstance from '../config/axiosInstance';
+import { useUser } from '../context/UserContext';
 
 const Login = () => {
 
@@ -16,6 +17,7 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [getStarted, setGetStarted] = useState(true);
+  const {setUserData} = useUser();
 
   const toggleGetStarted = () => setGetStarted(!getStarted);
 
@@ -29,15 +31,17 @@ const Login = () => {
         return alert("Please Enter Password!")
       }
 
-      const response = await axiosInstance.post(API_ROUTES.USER_LOGIN, 
+      const response = await axios.post("http://localhost:8080/api/v1/user/login", 
         {
         name: userName,
         password: password
       })
 
+      console.log("response", response);
       if (response.data.success) {
+        setUserData(response.data.data);
         setItemToLocalStorage("user-data", response.data.data);
-        setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token)
+        setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token);
         // const role = response.data.data.role;
         // console.log("User role", role);
         // const allowedPath = response?.data?.data?.allowedPath;
@@ -58,7 +62,7 @@ const Login = () => {
     } catch (error) {
       console.log("An Error Occurred!", error)
       const errorResponse = error;
-      toast.error(errorResponse.response.data.message || "Login Failed!");
+      toast.error(errorResponse.response.data.data.message || "Login Failed!");
     }
   }
 
@@ -96,7 +100,7 @@ const Login = () => {
               <label htmlFor="password">
                 Password
               </label>
-              <div className='flex items-center justify-between pr-3'>
+              <div className='flex items-center justify-between pr-3 cursor-pointer'>
                 <input type={isShowPassword ? 'text' : 'password'} id='password' value={password} placeholder='Enter Your Password' className='outline-none' onChange={(e) => setPassword(e.target.value)} />
                 {
                   isShowPassword ? 

@@ -4,10 +4,11 @@ import { STORAGE_KEY } from './config/config'
 import { routes } from './config/Routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
+import { UserProvider, useUser } from './context/UserContext'
 
-const App = () => {
+const AppContent = () => {
 
-  const [userData, setUserData] = useState(getItemFromLocalStorage(STORAGE_KEY.USER_DATA))
+  const { userData } = useUser()
 
   // useEffect(() => {
   //   const storedUserData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA)
@@ -44,4 +45,9 @@ const App = () => {
   return <RouterProvider router={router} />
 }
 
+const App = () => (
+<UserProvider>
+  <AppContent/>
+</UserProvider>
+)
 export default App
