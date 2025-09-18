@@ -2,12 +2,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../helpers/helper";
 import { STORAGE_KEY } from "../config/config";
 
-const userContext = createContext();
+const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
     const [userData, setUserData] = useState();
     useEffect(() => {
         const storedData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA);
+        console.log("Stored Data: ", storedData);
         setUserData(storedData);
     }, [])
 
@@ -20,9 +21,9 @@ export const UserProvider = ({children}) => {
         setUserData(null)
     }
 
-    return <userContext.Provider value={{userData, setUserData, logout}}>
+    return <UserContext.Provider value={{userData, setUserData, logout}}>
         {children}
-    </userContext.Provider>
+    </UserContext.Provider>
 }
 
-export const useUser = () => useContext(userContext)
+export const useUser = () => useContext(UserContext)

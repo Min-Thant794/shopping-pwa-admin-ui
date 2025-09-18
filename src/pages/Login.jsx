@@ -39,21 +39,21 @@ const Login = () => {
 
       console.log("response", response);
       if (response.data.success) {
-        setUserData(response.data.data);
-        setItemToLocalStorage("user-data", response.data.data);
-        setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token);
+        setIsLoading(true);
         // const role = response.data.data.role;
         // console.log("User role", role);
         // const allowedPath = response?.data?.data?.allowedPath;
         // console.log("allowed path", response.data.data)
 
+        setUserData(response.data.data);
+        setItemToLocalStorage(STORAGE_KEY.USER_DATA, response.data.data);
+        setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token);
         setIsLoading(!isLoading)
-        toast.success("Successfully Login!");
-        
         setTimeout(() => {
-            setIsLoading(false)
             navigate("/dashboard")
-            window.location.reload()
+            setIsLoading(false)
+            toast.success("Successfully Login!");
+            //window.location.reload()
         }, 500);
       } else {
         BiSolidCommentError("Invalid credentials, please try again.")
@@ -143,7 +143,11 @@ const Login = () => {
           </div>
         </div>
         }
-        <form className='flex h-screen flex-col gap-3 py-5 px-3 items-center justify-center backgroundGradient opacity-90'>
+        <form 
+        onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit();}}
+        className='flex h-screen flex-col gap-3 py-5 px-3 items-center justify-center backgroundGradient opacity-90'>
           <div className='font-bold text-3xl tracking-wide text-txtColor'>
             Welcome Back!
           </div>

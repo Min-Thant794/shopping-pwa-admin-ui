@@ -2,4 +2,4 @@
 import loginVideo from "./assets/videos/loginVideo.mp4";
 export const videos = [loginVideo];
 
-//Main Layout NavItems
+//user info floating div

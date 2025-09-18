@@ -6,10 +6,8 @@ import TopSearchBar from '../components/TopSearchBar'
 
 const MainLayout = () => {
   return (
-    <div className='flex scroll-smooth'>
-        <div className='flex flex-col sticky top-0 w-2/14 py-5 h-screen bg-[#e9eae8] font-semibold text-center gap-3'>
-            <img src={logoImg} alt="" />
-            Modern Admin Dashboard
+    <div className='flex scroll-smooth bg-[#707370]'>
+        <div className='flex sticky top-0 w-2/14 h-screen text-center'>
             <NavBar/>
         </div>
         <div className='flex flex-col w-full'>

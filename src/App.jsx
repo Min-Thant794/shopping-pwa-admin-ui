@@ -35,7 +35,7 @@ const AppContent = () => {
 
     filteredRoutes.push({
       path: "*",
-      element: userData ? <Navigate to={filteredRoutes[1]?.children[0]?.path}/> : <Navigate to="/login"/>
+      element: userData ? <Navigate to={filteredRoutes[1]?.children[0]?.path || "/dashboard"}/> : <Navigate to="/login"/>
     })
 
     console.log("allowed routes: ", filteredRoutes)

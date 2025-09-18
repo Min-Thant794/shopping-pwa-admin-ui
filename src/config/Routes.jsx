@@ -6,11 +6,13 @@ import Product from '../pages/Product';
 import Unit from '../pages/Unit';
 import Category from '../pages/Category';
 import MainLayout from '../layouts/MainLayout';
+import Settings from '../pages/Settings';
 import { Navigate } from 'react-router-dom';
 import { FaHome, FaUserEdit } from "react-icons/fa";
 import { BiSolidCategory, BiSolidPurchaseTag } from "react-icons/bi";
 import { BiDetail } from "react-icons/bi";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
+import { IoIosSettings } from "react-icons/io";
 
 export const routes = [
     {
@@ -34,22 +36,16 @@ export const routes = [
                 icon: <FaHome />
             },
             {
-                name: "User Create",
-                path: "/user-create",
-                element: <UserCreate/>,
-                icon: <FaUserEdit/>
-            },
-            {
-                name: "Order",
-                path: "/order",
-                element: <Order/>,
-                icon: <BiSolidPurchaseTag />
-            },
-            {
                 name: "Product",
                 path: "/product",
                 element: <Product/>,
                 icon: <SiHomeassistantcommunitystore />
+            },
+            {
+                name: "Category",
+                path: "/category",
+                element: <Category/>,
+                icon: <BiSolidCategory />
             },
             {
                 name: "Unit",
@@ -58,10 +54,22 @@ export const routes = [
                 icon: <BiDetail />
             },
             {
-                name: "Category",
-                path: "/category",
-                element: <Category/>,
-                icon: <BiSolidCategory />
+                name: "Order",
+                path: "/order",
+                element: <Order/>,
+                icon: <BiSolidPurchaseTag />
+            },
+            {
+                name: "User Create",
+                path: "/user-create",
+                element: <UserCreate/>,
+                icon: <FaUserEdit/>
+            },
+            {
+                name: "Settings",
+                path: "/settings",
+                element: <Settings />,
+                icon: <IoIosSettings/>
             }
         ]
     }
