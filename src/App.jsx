@@ -1,6 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { getItemFromLocalStorage } from './helpers/helper'
-import { STORAGE_KEY } from './config/config'
+import React, { useMemo } from 'react'
 import { routes } from './config/Routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
@@ -9,12 +7,6 @@ import { UserProvider, useUser } from './context/UserContext'
 const AppContent = () => {
 
   const { userData } = useUser()
-
-  // useEffect(() => {
-  //   const storedUserData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA)
-  //   console.log("stored user data", storedUserData)
-  //   setUserData(storedUserData)
-  // }, [])
 
   const router = useMemo(() => {
     const allowedUserRoutes = userData?.allowedPath || ["/login"]

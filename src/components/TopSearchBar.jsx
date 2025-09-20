@@ -69,7 +69,7 @@ import RippleButton from './RippleButton';
             <div className='flex items-center px-5 gap-5'>
                 {
                     location.pathname === "/product" &&
-                    <label htmlFor='search' className='flex items-center justify-center py-2 px-5 bg-[#e9eae8] rounded-full'>
+                        <label htmlFor='search' className='flex items-center justify-center py-2 px-5 bg-[#e9eae8] rounded-full'>
                         <input 
                         onChange={(e) => setSearch(e.target.value)}
                         id='search' 
@@ -99,58 +99,44 @@ import RippleButton from './RippleButton';
                 </div>
             </div>
         </div>
-        {
-            <div className={`duration-300 w-1/10 ${userSettings? "opacity-100 translate-y-1" : "opacity-0 -translate-y-1 pointer-events-none"} flex flex-col absolute justify-center top-15 right-0 mr-3 gap-1 bg-[#383838]`}>
-                <div className='flex items-center p-2 gap-1 border-b-white border-b-1'>
-                    <RiProfileLine className='text-xl text-amber-50' />
-                    <div
-                    onClick={() => {toggleUserDetail();
-                        setUserSettings(false)}}
-                    className='text-left cursor-pointer text-amber-50 font-semibold tracking-wide'>Profile Details
-                    </div>
-                </div>
-                <Link 
-                to="/settings"
-                onClick={() => {
-                    setUserSettings(false)
-                }}
-                className='flex items-center p-2 gap-1 border-b-white border-b-1'>
-                    <IoIosSettings className='text-xl text-amber-50' />
-                    <div className='cursor-pointer text-left text-amber-50 font-semibold tracking-wide'>Settings</div>
-                </Link>
-                <div 
-                onClick={logout}
-                className='flex items-center p-2 gap-1 border-b-white border-b-1'>
-                    <RiLogoutBoxFill className='text-xl text-amber-50' />
-                    <div className='text-amber-50 text-left cursor-pointer font-semibold tracking-wide'>Log Out</div>
+        <div className={`duration-300 w-2/17 ${userSettings? "opacity-100 translate-y-1" : "opacity-0 -translate-y-1 pointer-events-none"} flex flex-col absolute justify-center top-15 right-0 mr-3 gap-1 bg-[#383838]`}>
+            <div className='flex items-center p-2 gap-1 border-b-white border-b-1'>
+                <RiProfileLine className='text-xl text-amber-50' />
+                <div
+                onClick={() => {toggleUserDetail();
+                    setUserSettings(false)}}
+                className='text-left cursor-pointer text-amber-50 font-semibold tracking-wide'>Profile Details
                 </div>
             </div>
-        }
+            <Link 
+            to="/settings"
+            onClick={() => {
+                setUserSettings(false)
+            }}
+            className='flex items-center p-2 gap-1 border-b-white border-b-1'>
+                <IoIosSettings className='text-xl text-amber-50' />
+                <div className='cursor-pointer text-left text-amber-50 font-semibold tracking-wide'>Settings</div>
+            </Link>
+            <div 
+            onClick={logout}
+            className='flex items-center p-2 gap-1 border-b-white border-b-1'>
+                <RiLogoutBoxFill className='text-xl text-amber-50' />
+                <div className='text-amber-50 text-left cursor-pointer font-semibold tracking-wide'>Log Out</div>
+            </div>
+        </div>
         {
             isNotification &&
             <div className='flex flex-col absolute top-16 w-2/15 z-40 right-0 mr-5 bg-red-500 p-3'>
                 notification will appear here!
             </div>
         }
-        <div className={`flex flex-col duration-300 ${isDetail ? "opacity-100" : "opacity-0 pointer-events-none"} w-2/8 z-43 absolute top-35 rounded-lg bg-gradient-to-br from-[#383838] via-[#707070] to-[#383838]`}>
+        <div className={`flex flex-col duration-300 ${isDetail ? "opacity-100" : "opacity-0 pointer-events-none"} w-2/7 py-5 z-43 absolute top-30 rounded-lg bg-gradient-to-br from-[#383838] via-[#707070] to-[#383838]`}>
             <div className='text-center relative text-3xl py-3 font-semibold tracking-wider text-amber-50'>
                 Profile Details
                 <IoClose className='absolute right-0 cursor-pointer top-0 m-3 text-4xl active:opacity-60' onClick={() => setIsDetail(!isDetail)} />
             </div>
             <div className='flex items-center justify-center p-3'>
                 <img src={isUser?.imageUrl} alt="" className='w-[200px] h-[200px] rounded-[100%]' />
-            </div>
-            <div className='flex justify-end'>
-                <Link
-                onClick={() => setIsDetail(false)}
-                to="/settings"
-                className=''>
-                    <RippleButton
-                    className='flex gap-2 items-center font-semibold tracking-wide cursor-pointer active:opacity-80 mx-10 text-white/50 justify-center p-2 rounded-lg bg-black/20'>
-                        Edit Profile
-                        <FaEdit className='text-amber-50 text-md' />
-                    </RippleButton>
-                </Link>
             </div>
             <div className='flex flex-col p-5 font-semibold text-lg px-10 gap-3 text-white/50'>
                 <div>
@@ -167,6 +153,9 @@ import RippleButton from './RippleButton';
                 </div>
                 <div>
                     Created At: {isUser?.createdAt?.slice(0, 10)}
+                </div>
+                <div>
+                    UPdated At: {isUser?.updatedAt?.slice(0, 10)}
                 </div>
             </div>
         </div>
