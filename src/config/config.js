@@ -5,6 +5,8 @@ export const STORAGE_KEY = {
 
 export const API_ROUTES = {
     //DEPLOY_BASE_URL: "https://shopping-backend-amy1.onrender.com/api/v1",
+    LOCAL_BASE_URL: "http://localhost:8080/api/v1",
     USER_LOGIN: "/user/login",
-    LOCAL_BASE_URL: "http://localhost:8080/api/v1"
+    UPDATE_USER: "/user",
+    GET_ALL_UNIT: "/unit"
 }

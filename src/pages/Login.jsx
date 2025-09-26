@@ -3,7 +3,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { videos } from '../constants'
 import { useNavigate, createBrowserRouter } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { setItemToLocalStorage } from '../helpers/helper';
 import RippleButton from '../components/RippleButton';
 import { API_ROUTES, STORAGE_KEY } from '../config/config';
@@ -31,20 +30,15 @@ const Login = () => {
         return alert("Please Enter Password!")
       }
 
-      const response = await axios.post("http://localhost:8080/api/v1/user/login", 
-        {
+      const response = await axiosInstance.post(API_ROUTES.USER_LOGIN, 
+      {
         name: userName,
         password: password
       })
-
-      console.log("response", response);
+      console.log("RESPONSE: ", response.data.message);
+      
       if (response.data.success) {
         setIsLoading(true);
-        // const role = response.data.data.role;
-        // console.log("User role", role);
-        // const allowedPath = response?.data?.data?.allowedPath;
-        // console.log("allowed path", response.data.data)
-
         setUserData(response.data.data);
         setItemToLocalStorage(STORAGE_KEY.USER_DATA, response.data.data);
         setItemToLocalStorage(STORAGE_KEY.TOKEN, response.data.token);
@@ -52,17 +46,16 @@ const Login = () => {
         setTimeout(() => {
             navigate("/dashboard")
             setIsLoading(false)
-            toast.success("Successfully Login!");
-            //window.location.reload()
+            toast.success(response.data.message);
         }, 500);
       } else {
-        BiSolidCommentError("Invalid credentials, please try again.")
+        toast.error("Unable to login")
       }
 
     } catch (error) {
-      console.log("An Error Occurred!", error)
+      //console.log("An Error Occurred!", error)
       const errorResponse = error;
-      toast.error(errorResponse.response.data.data.message || "Login Failed!");
+      //toast.error(errorResponse.response.data.message || "Login Failed!");
     }
   }
 

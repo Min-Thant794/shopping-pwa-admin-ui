@@ -11,7 +11,9 @@ const MainLayout = () => {
         </div>
         <div className='flex flex-col w-full'>
             <TopSearchBar/>
-            <Outlet/>
+            <div className='p-3'>
+              <Outlet/>
+            </div>
         </div>
     </div>
   )

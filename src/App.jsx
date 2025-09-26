@@ -3,6 +3,7 @@ import { routes } from './config/Routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Navigate } from 'react-router-dom'
 import { UserProvider, useUser } from './context/UserContext'
+import { ToastContainer} from 'react-toastify'
 
 const AppContent = () => {
 
@@ -14,7 +15,7 @@ const AppContent = () => {
     const filteredRoutes = routes.map((route) => {
       if (route.children) {
         const allowedChildren = route.children.filter((child) => allowedUserRoutes?.includes(child.path))
-         console.log("Allowed Children Routes",allowedChildren)
+         //console.log("Allowed Children Routes",allowedChildren)
         if(allowedChildren?.length === 0) return null
        
         return {
@@ -39,7 +40,9 @@ const AppContent = () => {
 
 const App = () => (
 <UserProvider>
+  <ToastContainer/>
   <AppContent/>
 </UserProvider>
 )
+
 export default App
