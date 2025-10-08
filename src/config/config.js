@@ -8,5 +8,8 @@ export const API_ROUTES = {
     LOCAL_BASE_URL: "http://localhost:8080/api/v1",
     USER_LOGIN: "/user/login",
     UPDATE_USER: "/user",
-    GET_ALL_UNIT: "/unit"
+    GET_ALL_UNIT: "/unit",
+    POST_NEW_UNIT: "/unit",
+    UPDATE_UNIT: "/unit",
+    DELETE_UNIT: "/unit"
 }

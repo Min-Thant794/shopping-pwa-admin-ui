@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_ROUTES, STORAGE_KEY } from "./config";
-import { getItemFromLocalStorage } from "../helpers/helper";
+import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../helpers/helper";
 
 const axiosInstance = axios.create({
     baseURL: API_ROUTES.LOCAL_BASE_URL,
@@ -23,6 +23,7 @@ axiosInstance.interceptors.response.use(
     (error) => {
         if(error.response && [401, 403].includes(error.response.status)){
             if(window.location.pathname !== "/login"){
+                removeItemFromLocalStorage()
                 window.location.href = "/login";
             }
         }
