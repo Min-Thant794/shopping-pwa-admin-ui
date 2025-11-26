@@ -1,7 +1,6 @@
 import React from 'react'
 import { routes } from '../config/Routes'
 import { NavLink } from 'react-router-dom'
-import logoImg from '../assets/logo/logo.png'
 import RippleButton from './RippleButton';
 import { useUser } from '../context/UserContext';
 

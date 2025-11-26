@@ -10,8 +10,10 @@ const AppContent = () => {
   const { userData } = useUser()
 
   const router = useMemo(() => {
-    const allowedUserRoutes = userData?.allowedPath || ["/login"]
-    //console.log("Route:", allowedUserRoutes);
+    const allowedUserRoutes = userData?.role?.allowedPaths || ["/login"]
+    console.log("Route:", allowedUserRoutes);
+    const userRole = userData?.role;
+    console.log("User Role:", userRole)
     const filteredRoutes = routes.map((route) => {
       if (route.children) {
         const allowedChildren = route.children.filter((child) => allowedUserRoutes?.includes(child.path))

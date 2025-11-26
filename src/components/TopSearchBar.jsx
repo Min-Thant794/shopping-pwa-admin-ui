@@ -203,7 +203,7 @@ const TopSearchBar = () => {
                         Email Address: {isUser?.email || "No Email Address"}
                     </div>
                     <div>
-                        Role: {isUser?.role || 'N/A'}
+                        Role: {isUser?.role?.name || 'N/A'}
                     </div>
                     <div>
                         Created At: {isUser?.createdAt?.slice(0, 10) || 'N/A'}

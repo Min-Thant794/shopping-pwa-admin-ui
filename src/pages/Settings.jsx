@@ -30,7 +30,7 @@ const Settings = () => {
             setPhoneNumber(userData.phoneNumber || "Not Provided!")
             setPassword('')
             setRole(userData.role)
-            setPreviewImg(userData.imageUrl || '')
+            setPreviewImg(userData.imageUrl || null)
         }
     }, [userData])
 
@@ -49,7 +49,7 @@ const Settings = () => {
         }
     }
 
-    const allowedPaths = userData?.allowedPath?.map(path => path.substring(1)).join(", ");
+    const allowedPaths = userData?.role?.allowedPath?.map(path => path.substring(1)).join(", ");
 
     const handleUserUpdate = async () => {
         try {
@@ -72,7 +72,7 @@ const Settings = () => {
             const response = await updateUserData(userData._id, formData)
             //console.log("Form Data", formData.getAll("image"))
 
-            if(response.success){
+            if(response?.success){
                 const updatedData = response.data || response.updatedUser
                 console.log("response.updateduser: ", response.updatedUser)
                 changeUserData(updatedData)
@@ -88,7 +88,7 @@ const Settings = () => {
     }
 
   return (
-    <div className='flex justify-center bg-[#808080]'>
+    <div className='flex justify-center'>
             <form
             className='flex flex-col justify-center text-amber-50 font-semibold items-center px-10 py-5 rounded-lg w-5/15 gap-3 bg-[#383838] mb-5 mt-10'
             onSubmit={(e) => {e.preventDefault() 
@@ -107,7 +107,7 @@ const Settings = () => {
                             Upload Photo
                             <FaUserEdit
                             className='text-3xl' />
-                            <input 
+                            <input
                             type="file" id='fileUpload'
                             ref={fileInputRef} 
                             multiple={false}
