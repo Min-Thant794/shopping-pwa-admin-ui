@@ -4,7 +4,7 @@ import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../helpers/
 
 const axiosInstance = axios.create({
     baseURL: API_ROUTES.LOCAL_BASE_URL,
-    timeout: 30000,
+    timeout: 300000,
 });
 
 axiosInstance.interceptors.request.use(

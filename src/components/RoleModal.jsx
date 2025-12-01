@@ -14,7 +14,7 @@ const RoleModal = (props) => {
     isUpdatingRole ? setIsUpdatingRole(false) : setIsAddingRole(false)
     setAllowedPaths([])
     setName("")
-    setDescription()
+    setDescription("")
     setDataToUpdate(null)
   }
 
@@ -22,7 +22,7 @@ const RoleModal = (props) => {
     if(allowedPaths.includes(path)){
         setAllowedPaths(allowedPaths.filter(item => item !== path))
     }else{
-        setAllowedPaths([...allowedPaths, path]);
+        setAllowedPaths(prev => [...prev, path]);
     }
   }
 
@@ -38,7 +38,7 @@ const RoleModal = (props) => {
             allowedPaths
         }
         const finalDbFn = isUpdatingRole ? updateRole({...commonPayload, id:dataToUpdate._id}) : addNewRole(commonPayload)
-        const response = await addNewRole(finalDbFn)
+        const response = await finalDbFn
         if(response.success){
             toast.success(response.message)
             clearInput()

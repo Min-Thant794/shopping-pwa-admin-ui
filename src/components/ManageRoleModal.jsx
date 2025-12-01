@@ -51,7 +51,7 @@ const handleGetAllRole = async () => {
                             </div>
                             <div className='text-xs text-center items-center grid grid-cols-3 col-span-2 p-2 gap-3 bg-[#383838] rounded-md'>
                                 {role?.allowedPaths?.map(path => (
-                                    <div key={path} className='uppercase p-2 border-2 rounded-md border-[#7f7f7f]'>
+                                    <div className='uppercase p-2 border-2 rounded-md border-[#7f7f7f]'>
                                         {
                                             path.slice(1, path.length)
                                         }

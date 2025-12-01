@@ -33,7 +33,7 @@ const AppContent = () => {
       element: userData ? <Navigate to={filteredRoutes[1]?.children[0]?.path || "/dashboard"}/> : <Navigate to="/login"/>
     })
 
-    console.log("allowed routes: ", filteredRoutes)
+    //console.log("allowed routes: ", filteredRoutes)
     return createBrowserRouter(filteredRoutes)
   }, [userData])
 
