@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getAllRole } from '../services/role.service';
 import RippleButton from './RippleButton';
-import { createUser, updateUserRole } from '../services/user.service';
+import { createUser, updateUserData } from '../services/user.service';
 import { toast } from 'react-toastify';
 import { IoMdClose } from "react-icons/io";
 
 const UserModal = ({ setIsAddingUser, setUsers, isUpdatingUser, isAddingUser, userData = null, setIsUpdatingUser }) => {
-  const [username, setUsername] = useState(userData?.name);
+  const [username, setUsername] = useState(userData?.name || "");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState([]);
   const [selectedRole, setSelectedRole] = useState(null);
@@ -27,6 +27,9 @@ const UserModal = ({ setIsAddingUser, setUsers, isUpdatingUser, isAddingUser, us
   }, [])
 
   const handleCreateUser = async () => {
+    if(!selectedRole) {
+      toast.warn("Please select a role for the user");
+    }
     try {
       const response = isAddingUser ?
         await createUser({
@@ -35,16 +38,20 @@ const UserModal = ({ setIsAddingUser, setUsers, isUpdatingUser, isAddingUser, us
           role: selectedRole
         })
         :
-        await updateUserRole(userData?._id, {role: selectedRole});
+        // await updateUserRole(userData?._id, {role: selectedRole});
+        await updateUserData(userData?._id, { name: username, role: selectedRole });
       console.log("Create/Update response:", response);
       if(response.success){
         toast.success(response?.message)
         setIsAddingUser(false)
+        setIsUpdatingUser(false)
+        setSelectedRole(null)
+        setUsername("")
+        console.log("Response handleCreateUser()", response.data)
         isAddingUser ?
           setUsers(prev => [...prev, response.data])
           :
           setUsers(prev => prev.map(user => user?._id === userData?._id ? response.data : user));
-        console.log("Response handleCreateUser()", response.data)
       }
     } catch (error) {
       console.log("handleCreateUser()", error);
@@ -92,8 +99,8 @@ const UserModal = ({ setIsAddingUser, setUsers, isUpdatingUser, isAddingUser, us
         }}
         className='flex flex-col bg-[#383838] w-full max-w-lg rounded-md px-3 py-2 shadow-xl'>
             <div className='w-full flex justify-end'>
-              <button className='right-0 cursor-pointer active: opacity-75'>
-                <IoMdClose 
+              <button type='button' className='right-0 cursor-pointer active: opacity-75'>
+                <IoMdClose
                 onClick={() => {
                   setIsAddingUser(false)
                   setIsUpdatingUser(false)
@@ -143,6 +150,7 @@ const UserModal = ({ setIsAddingUser, setUsers, isUpdatingUser, isAddingUser, us
                 }
                 <div className='flex w-full justify-end mb-5'>
                   <RippleButton
+                  type="submit"
                   className={'bg-green-500 px-3 py-2 rounded-md font-bold tracking-wide cursor-pointer'}>
                     {isUpdatingUser ? "Update User" : "Create User"}
                   </RippleButton>
