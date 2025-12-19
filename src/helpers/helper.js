@@ -10,3 +10,13 @@ export const getItemFromLocalStorage = (key) => {
 export const removeItemFromLocalStorage = () => {
     return localStorage.clear();
 }
+
+export const resolveImageUrl = (url, baseUrl) => {
+    if (!url) return "";
+    if (/^(https?:)?\/\//i.test(url) || url.startsWith("data:") || url.startsWith("blob:")) {
+        return url;
+    }
+    const base = baseUrl || "";
+    if (!base) return url;
+    return `${base.replace(/\/+$/, "")}/${url.replace(/^\/+/, "")}`;
+}

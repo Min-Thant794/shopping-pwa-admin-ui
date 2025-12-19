@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { deleteProduct, getProduct } from '../services/product.service';
+import { resolveImageUrl } from '../helpers/helper';
+import { API_ROUTES } from '../config/config';
 import ProductModal from '../components/ProductModal';
 import { MdDeleteSweep, MdEditNote } from 'react-icons/md';
 import { IoAddCircleOutline } from 'react-icons/io5';
@@ -96,7 +98,7 @@ const Product = () => {
                             <td className="px-4 py-3">
                                 {p?.imageUrls?.length > 0 ? (
                                     <img
-                                        src={p.imageUrls[0]}
+                                        src={resolveImageUrl(p.imageUrls[0], API_ROUTES.LOCAL_SERVER_URL)}
                                         alt={p.name}
                                         className="h-10 w-10 object-cover rounded-md border-2 border-black/20"
                                     />
