@@ -1,11 +1,13 @@
 export const STORAGE_KEY = {
     USER_DATA : "user-data",
-    TOKEN: "x-access-token"
+    TOKEN: "x-access-token",
+    CLICKED_TAB: "clickedTab"
 }
 
 export const API_ROUTES = {
     //DEPLOY_BASE_URL: "https://shopping-backend-amy1.onrender.com/api/v1",
     LOCAL_BASE_URL: "http://localhost:8080/api/v1",
+    LOCAL_SERVER_URL: "http://localhost:8080/",
     
     //user auth
     USER_LOGIN: "/user/login",
@@ -29,5 +31,20 @@ export const API_ROUTES = {
     //role
     GET_ALL_ROLES: "/role",
     POST_NEW_ROLE: "/role",
-    UPDATE_ROLE: "/role"
+    UPDATE_ROLE: "/role",
+
+    //product
+    GET_ALL_PRODUCT: "/product/products-by-id",
+    POST_NEW_PRODUCT: "/product",
+    UPDATE_PRODUCT: "/product",
+    DELETE_PRODUCT: "/product",
+
+    //payment
+    GET_ALL_PAYMENT: "/payment/payments-by-id",
+    POST_NEW_PAYMENT: "/payment",
+    UPDATE_PAYMENT: "/payment",
+    DELETE_PAYMENT: "/payment",
+
+    //order
+    GET_ALL_ORDER: "/order/orders-by-id",
 }
