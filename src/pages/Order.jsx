@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import io from "socket.io-client"
 import { getItemFromLocalStorage } from '../helpers/helper'
 import { API_ROUTES, STORAGE_KEY } from '../config/config'
 import axiosInstance from '../config/axiosInstance'
-
-//initialize socket outside
-const socket = io(API_ROUTES.LOCAL_SERVER_URL, { transports: ["websocket"]});
-
+import { socket } from '../socket'
 
 const Order = () => {
 

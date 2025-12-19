@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import io from "socket.io-client"
 import { getItemFromLocalStorage } from '../helpers/helper'
 import { API_ROUTES, STORAGE_KEY } from '../config/config'
 import axiosInstance from '../config/axiosInstance'
+import { socket } from '../socket'
 
 //Charts
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, CartesianGrid, YAxis } from 'recharts'
-
-//Initialize socket outside
-const socket = io(API_ROUTES.LOCAL_SERVER_URL, { transports: ["websocket"] });
 
 const Dashboard = () => {
   const userData = getItemFromLocalStorage(STORAGE_KEY.USER_DATA);

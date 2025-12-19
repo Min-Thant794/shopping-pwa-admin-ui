@@ -17,7 +17,7 @@ const AppContent = () => {
     socket.on("connect", () => {
       console.log("Socket connected!", socket.id);
     });
-    socket.on("Connect_error", (err) => {
+    socket.on("connect_error", (err) => {
       console.log("Socket connection error:", err.message);
     });
     return () => {

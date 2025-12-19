@@ -4,10 +4,13 @@ export const STORAGE_KEY = {
     CLICKED_TAB: "clickedTab"
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
+const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:8080/";
+
 export const API_ROUTES = {
     //DEPLOY_BASE_URL: "https://shopping-backend-amy1.onrender.com/api/v1",
-    LOCAL_BASE_URL: "http://localhost:8080/api/v1",
-    LOCAL_SERVER_URL: "http://localhost:8080/",
+    LOCAL_BASE_URL: API_BASE_URL,
+    LOCAL_SERVER_URL: SERVER_URL,
     
     //user auth
     USER_LOGIN: "/user/login",
