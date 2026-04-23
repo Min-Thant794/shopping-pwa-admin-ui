@@ -9,7 +9,7 @@ const NavBar = () => {
     const navRoutes = routes.find((route) => route.children);
     //console.log("navroutes: ", navRoutes)
   return (
-    <div className='flex flex-col w-full px-5 justify-between h-full py-5 bg-[#383838]'>
+    <div className='flex flex-col w-full px-3 justify-between h-full py-5 bg-[#383838]'>
         <div className='flex flex-col gap-3'>
             <div className='font-bold tracking-wider text-2xl mb-10 text-amber-50'>
                 THREADED
